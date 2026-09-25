@@ -32,7 +32,7 @@ def build_db(chunks):
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     texts = [c["chunk"] for c in chunks]
     metadatas = [{"source": c["source"], "page":c["page"]} for c in chunks]
-    Chroma.form_texts(texts,embedding = embeddings, metadats=metadatas, persist_directory=PERSIST_DIR)
+    Chroma.from_texts(texts,embedding = embeddings, metadatas=metadatas, persist_directory=PERSIST_DIR)
     
 if __name__ == "__main__":
     docs = load_pdf(PDF_DIR)
